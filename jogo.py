@@ -1,34 +1,25 @@
-rodando = True
+total_partidas = 0
+vitoria_player1 = 0
+vitoria_player2 = 0
+empates = 0
+opcao_menu = 0
 
-while rodando == True:
-    print("")
-    print("=========================")
-    print("          JOGOS NO TERMINAL")
-    print("==================================")
-    print("1 - Jogo da Velha")
-    print("2 - Sudoku")
-    print("3 - Ver regras")
-    print("4 - Sair")
-    print("========================================")
+while opcao_menu != 4:
+    print("\n ===========================")
+    print("         SUDOKU COMPETITIVO (4X4) - MENU          ")
+    print("=====================================")
+    print("\n")
+    print(" 1 - jogar (Escolher Dificuldade)" ) 
+    print(" 2 - sobre o jogo e regras" )
+    print(" 3 - estatisticas de vitorias " )
+    print(" 4 - fechar o programa" )
+    print("=================================")
 
-    opcao = 0
-    valida = False
-    while valida == False:
-        entrada = input("Escolha uma opção (1 a 4): ")
-        for n in range(1, 6):
-            if entrada == str(n):
-                valida = True
-                opcao = n
-        if valida == False:
-            print("Entrada inválida! Digite um número de 1 a 5.")
-
-    # Tratamento da opção escolhida
-    if opcao == 1:
-        print("Você escolheu: Jogo da Velha")
-    elif opcao == 2:
-        print("Você escolheu: Sudoku")
-    elif opcao == 3:
-        print("Você escolheu: Ver regras")
-    else:
-        print("Encerrando o programa. Até a próxima!")
-        rodando = False
+validar_menu = false
+opcao_string = input("Escolha uma opcao (de 1 a 4): ")
+for n in range(1,5):
+    if opcao_string == str(n):
+        validar_menu = true
+        opcao_menu = n
+if validar_menu == false:
+    print("\n ENTRADA INVALIDA digite apenas numeros entre 1 a 5") 
