@@ -23,8 +23,3 @@ while opcao_menu != 4:
         if valida_menu == False:
             print("[ENTRADA INVALIDA] Digite apenas um numero de 1 a 4.")
 
-git config user.name "Felipe"
-git config user.email "alpacaf99@gmail.com" 
-git add sudoku.py
-git commit -m "feat: primeiro commit; estrutura inicial do menu principal e variaveis globais" # feat: adiciona validação de linha e coluna com loop while
-git push 
