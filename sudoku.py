@@ -75,3 +75,22 @@ while opcao_menu != 4:
                     co = posicoes_j[idx]
                     tabuleiro[li][co] = gabarito[li][co]
                     fixo[li][co] = True
+             pontos_partida = 0
+                partida_ativa = True
+                while partida_ativa == True:
+                    print("\n      1   2     3   4")
+                    print("    +-------+-------+")
+                    for i in range(4):
+                        linha_fmt = str(i + 1) + "   | "
+                        for j in range(4):
+                            val_str = "."
+                            if tabuleiro[i][j] != 0:
+                                val_str = str(tabuleiro[i][j])
+                            linha_fmt = linha_fmt + val_str + " "
+                            if j == 1:
+                                linha_fmt = linha_fmt + "| "
+                        linha_fmt = linha_fmt + "|"
+                        print(linha_fmt)
+                        if i == 1 or i == 3:
+                            print("    +-------+-------+")
+                    print("Pontuação atual:", pontos_partida)
