@@ -22,4 +22,20 @@ while opcao_menu != 4:
                 opcao_menu = n
         if valida_menu == False:
             print("[ENTRADA INVALIDA] Digite apenas um numero de 1 a 4.")
-
+    if opcao_menu == 1:
+        opcao_dificuldade = 0
+        while opcao_dificuldade != 4:
+            print("\nSELECIONE A DIFICULDADE")
+            print("1 - Nivel Facil   (8 numeros)")
+            print("2 - Nivel Medio   (6 numeros)")
+            print("3 - Nivel Dificil (4 numeros)")
+            print("4 - Voltar ao menu principal")
+            valida_dif = False
+            while valida_dif == False:
+                dif_str = input("Escolha o nivel (1 a 4): ")
+                for n in range(1, 5):
+                    if dif_str == str(n):
+                        valida_dif = True
+                        opcao_dificuldade = n
+                if valida_dif == False:
+                    print("ENTRADA INVALIDA Digite apenas um numero de 1 a 4.")
