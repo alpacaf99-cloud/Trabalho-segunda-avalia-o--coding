@@ -39,3 +39,39 @@ while opcao_menu != 4:
                         opcao_dificuldade = n
                 if valida_dif == False:
                     print("ENTRADA INVALIDA Digite apenas um numero de 1 a 4.")
+            if opcao_dificuldade >= 1 and opcao_dificuldade <= 3:
+                total_partidas = total_partidas + 1
+                gabarito = [
+                    [1, 2, 3, 4],
+                    [3, 4, 1, 2],
+                    [2, 1, 4, 3],
+                    [4, 3, 2, 1],
+                ]
+                tabuleiro = [
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                ]
+                fixo = [
+                    [False, False, False, False],
+                    [False, False, False, False],
+                    [False, False, False, False],
+                    [False, False, False, False],
+                ]
+
+                if opcao_dificuldade == 1:
+                    posicoes_i = [0, 0, 1, 1, 2, 2, 3, 3]
+                    posicoes_j = [0, 3, 1, 2, 0, 3, 1, 2]
+                elif opcao_dificuldade == 2:
+                    posicoes_i = [0, 0, 1, 2, 3, 3]
+                    posicoes_j = [0, 2, 1, 3, 0, 2]
+                else:
+                    posicoes_i = [0, 1, 2, 3]
+                    posicoes_j = [0, 3, 0, 3]
+
+                for idx in range(len(posicoes_i)):
+                    li = posicoes_i[idx]
+                    co = posicoes_j[idx]
+                    tabuleiro[li][co] = gabarito[li][co]
+                    fixo[li][co] = True
