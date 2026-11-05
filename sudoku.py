@@ -148,3 +148,8 @@ else:
                        valor = n
                    if valida_v == False:
                        print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
+                                                   conflito = False
+                            # 1. Verifica repetido na mesma Linha
+                            for j in range(4):
+                                if j != coluna and tabuleiro[linha][j] == valor:
+                                    conflito = True 
