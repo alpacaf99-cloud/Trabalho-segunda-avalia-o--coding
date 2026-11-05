@@ -135,3 +135,16 @@ else:
                 coluna = n - 1
         if valida_c == False:
             print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
+          if fixo[linha][coluna] == True:
+                print("\n[JOGADA INVALIDA] Esta casa contém um número fixo inicial e não pode ser alterada!")
+            else:
+                valida_v = True
+                valor = -1
+                while valida_v == False:
+                  ent_v = input("Digite o valor para a casa (1 a 4): ")
+                  for n in range(1, 5):
+                     if ent_v == str(n):
+                       valida_v = True
+                       valor = n
+                   if valida_v == False:
+                       print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
