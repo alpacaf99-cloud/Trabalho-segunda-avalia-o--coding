@@ -159,3 +159,13 @@ while opcao_menu != 4:
                                         conflito = True
                             if conflito == True:
                                 print("\n[JOGADA INVALIDA] O número", valor, "viola as regras do Sudoku (já existe na linha, coluna ou bloco 2x2)!")
+                            else:
+                               tabuleiro[linha][coluna] = valor
+                               pontos_partida = pontos_partida + 10
+                               print("\n-> Jogada realizada com sucesso! (+10 pontos)")
+
+                              vazias = 0
+                              for i in range(4):
+                                  for j in range(4):
+                                      if tabuleiro[i][j] == 0:
+                                          vazias = vazias + 1
