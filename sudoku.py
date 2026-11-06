@@ -189,3 +189,17 @@ while opcao_menu != 4:
                                     pontuacao_total_sessao = pontuacao_total_sessao + pontos_partida
                                     partida_ativa = False
                                     opcao_dificuldade = 4
+    elif opcao_menu == 2:
+        print("\nREGRAS DO SUDOKU 4x4")
+        print("1. O jogo tem um jogador.")
+        print("2. Cada casa aceita um numero de 1 a 4.")
+        print("3. Nao repita numero na mesma linha.")
+        print("4. Nao repita numero na mesma coluna.")
+        print("5. Nao repita numero no mesmo bloco 2x2.")
+        print("6. Cada jogada valida soma 10 pontos.")
+        print("7. Complete o tabuleiro para concluir a partida.")
+        voltar = "0"
+        while voltar != "1":
+            voltar = input("Digite 1 para voltar ao menu principal: ")
+            if voltar != "1":
+                print("Opcao invalida. Digite 1 para voltar.")
