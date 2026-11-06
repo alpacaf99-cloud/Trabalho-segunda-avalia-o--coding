@@ -153,3 +153,7 @@ else:
                             for j in range(4):
                                 if j != coluna and tabuleiro[linha][j] == valor:
                                     conflito = True 
+                             # 2. Verifica repetido na mesma Coluna
+                            for i in range(4):
+                                if i != linha and tabuleiro[i][coluna] == valor:
+                                    conflito = True
