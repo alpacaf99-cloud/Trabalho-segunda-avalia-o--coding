@@ -160,12 +160,32 @@ while opcao_menu != 4:
                             if conflito == True:
                                 print("\n[JOGADA INVALIDA] O número", valor, "viola as regras do Sudoku (já existe na linha, coluna ou bloco 2x2)!")
                             else:
-                               tabuleiro[linha][coluna] = valor
-                               pontos_partida = pontos_partida + 10
-                               print("\n-> Jogada realizada com sucesso! (+10 pontos)")
-
-                              vazias = 0
-                              for i in range(4):
-                                  for j in range(4):
-                                      if tabuleiro[i][j] == 0:
-                                          vazias = vazias + 1
+                                tabuleiro[linha][coluna] = valor
+                                pontos_partida = pontos_partida + 10
+                                print("\n-> Jogada realizada com sucesso! (+10 pontos)")
+                                vazias = 0
+                                for i in range(4):
+                                    for j in range(4):
+                                        if tabuleiro[i][j] == 0:
+                                            vazias = vazias + 1
+                                if vazias == 0:
+                                    print("\n      1   2     3   4")
+                                    print("    +-------+-------+")
+                                    for i in range(4):
+                                        linha_fmt = str(i + 1) + "   | "
+                                        for j in range(4):
+                                            linha_fmt = linha_fmt + str(tabuleiro[i][j]) + " "
+                                            if j == 1:
+                                                linha_fmt = linha_fmt + "| "
+                                        linha_fmt = linha_fmt + "|"
+                                        print(linha_fmt)
+                                        if i == 1 or i == 3:
+                                            print("    +-------+-------+")
+                                    print("\n=========================================")
+                                    print(" PARABÉNS! VOCÊ COMPLETOU O SUDOKU 4x4! ")
+                                    print(" Pontuação Final da Partida:", pontos_partida)
+                                    print("=========================================")
+                                    vitorias = vitorias + 1
+                                    pontuacao_total_sessao = pontuacao_total_sessao + pontos_partida
+                                    partida_ativa = False
+                                    opcao_dificuldade = 4
