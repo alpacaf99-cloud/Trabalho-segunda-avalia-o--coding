@@ -2,7 +2,6 @@ total_partidas = 0
 vitorias = 0
 pontuacao_total_sessao = 0
 opcao_menu = 0
-
 while opcao_menu != 4:
     print("\n=====================================")
     print("         SUDOKU 4x4    ")
@@ -12,7 +11,6 @@ while opcao_menu != 4:
     print("3 - Estatisticas da sessao")
     print("4 - Fechar o programa")
     print("-------------------------------------")
-
     valida_menu = False
     while valida_menu == False:
         opcao_str = input("Escolha uma opcao (1 a 4): ")
@@ -59,7 +57,6 @@ while opcao_menu != 4:
                     [False, False, False, False],
                     [False, False, False, False],
                 ]
-
                 if opcao_dificuldade == 1:
                     posicoes_i = [0, 0, 1, 1, 2, 2, 3, 3]
                     posicoes_j = [0, 3, 1, 2, 0, 3, 1, 2]
@@ -75,7 +72,7 @@ while opcao_menu != 4:
                     co = posicoes_j[idx]
                     tabuleiro[li][co] = gabarito[li][co]
                     fixo[li][co] = True
-             pontos_partida = 0
+                pontos_partida = 0
                 partida_ativa = True
                 while partida_ativa == True:
                     print("\n      1   2     3   4")
@@ -94,66 +91,71 @@ while opcao_menu != 4:
                         if i == 1 or i == 3:
                             print("    +-------+-------+")
                     print("Pontuação atual:", pontos_partida)
-        
-#menu de ações da partida
-print("\nMenu da Partida:")    
-print("1 - Inserir/Alterar número")
-print("2 - Desistir e voltar")
-
-valida_acao = False
-acao = 0
-while valida_acao == False:
-    ent_acao = input("Escolha uma opção (1 ou 2): ")
-    if ent_acao == "1" or ent_acao == "2":
-        valida_acao = True
-        acao = int(ent_acao)
-    else:
-        print("[ENTRADA INVALIDA] Digite 1 ou 2.")
-
-if acao == 2:
-    print("Você desistiu da partida.")
-    partida_ativa = False
-else:
-    valida_l = False
-    linha = -1
-    while valida_l == False:
-        ent_l = input("Digite a LINHA (1 a 4): ")
-        for n in range(1, 5):
-            if ent_l == str(n):
-                valida_l = True
-                linha = n - 1
-        if valida_l == False:
-            print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
-
-    valida_c = False
-    coluna = -1
-    while valida_c == False:
-        ent_c = input("Digite a COLUNA (1 a 4): ")
-        for n in range(1, 5):
-            if ent_c == str(n):
-                valida_c = True
-                coluna = n - 1
-        if valida_c == False:
-            print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
-          if fixo[linha][coluna] == True:
-                print("\n[JOGADA INVALIDA] Esta casa contém um número fixo inicial e não pode ser alterada!")
-            else:
-                valida_v = True
-                valor = -1
-                while valida_v == False:
-                  ent_v = input("Digite o valor para a casa (1 a 4): ")
-                  for n in range(1, 5):
-                     if ent_v == str(n):
-                       valida_v = True
-                       valor = n
-                   if valida_v == False:
-                       print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
-                                                   conflito = False
-                            # 1. Verifica repetido na mesma Linha
+                    # Menu de ações da partida
+                    print("\nMenu da Partida:")
+                    print("1 - Inserir/Alterar número")
+                    print("2 - Desistir e voltar")
+                    valida_acao = False
+                    acao = 0
+                    while valida_acao == False:
+                        ent_acao = input("Escolha uma opção (1 ou 2): ")
+                        if ent_acao == "1" or ent_acao == "2":
+                            valida_acao = True
+                            acao = int(ent_acao)
+                        else:
+                            print("[ENTRADA INVALIDA] Digite 1 ou 2.")
+                    if acao == 2:
+                        print("Você desistiu da partida.")
+                        partida_ativa = False
+                    else:
+                        valida_l = False
+                        linha = -1
+                        while valida_l == False:
+                            ent_l = input("Digite a LINHA (1 a 4): ")
+                            for n in range(1, 5):
+                                if ent_l == str(n):
+                                    valida_l = True
+                                    linha = n - 1
+                            if valida_l == False:
+                                print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
+                        valida_c = False
+                        coluna = -1
+                        while valida_c == False:
+                            ent_c = input("Digite a COLUNA (1 a 4): ")
+                            for n in range(1, 5):
+                                if ent_c == str(n):
+                                    valida_c = True
+                                    coluna = n - 1
+                            if valida_c == False:
+                                print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
+                        if fixo[linha][coluna] == True:
+                            print("\n[JOGADA INVALIDA] Esta casa contém um número fixo inicial e não pode ser alterada!")
+                        else:
+                            valida_v = False
+                            valor = -1
+                            while valida_v == False:
+                                ent_v = input("Digite o valor para a casa (1 a 4): ")
+                                for n in range(1, 5):
+                                    if ent_v == str(n):
+                                        valida_v = True
+                                        valor = n
+                                if valida_v == False:
+                                    print("[ENTRADA INVALIDA] Digite um número de 1 a 4.")
+                            conflito = False
+                            # 1. Verifica repetido na mesma linha
                             for j in range(4):
                                 if j != coluna and tabuleiro[linha][j] == valor:
-                                    conflito = True 
-                             # 2. Verifica repetido na mesma Coluna
+                                    conflito = True
+                            # 2. Verifica repetido na mesma coluna
                             for i in range(4):
                                 if i != linha and tabuleiro[i][coluna] == valor:
                                     conflito = True
+                            # 3. Verifica repetido no mesmo bloco 2x2.
+                            inicio_i = (linha // 2) * 2
+                            inicio_j = (coluna // 2) * 2
+                            for i in range(inicio_i, inicio_i + 2):
+                                for j in range(inicio_j, inicio_j + 2):
+                                    if (i != linha or j != coluna) and tabuleiro[i][j] == valor:
+                                        conflito = True
+                            if conflito == True:
+                                print("\n[JOGADA INVALIDA] O número", valor, "viola as regras do Sudoku (já existe na linha, coluna ou bloco 2x2)!")
