@@ -2,19 +2,20 @@ total_partidas = 0
 vitorias = 0
 pontuacao_total_sessao = 0
 opcao_menu = 0
-while opcao_menu != 4:
-    print("\n=====================================")
-    print("         SUDOKU 4x4    ")
-    print("=====================================")
-    print("1 - Jogar (Escolher Dificuldade)")
-    print("2 - Sobre o jogo e regras")
-    print("3 - Estatisticas da sessao")
-    print("4 - Fechar o programa")
-    print("-------------------------------------")
+while opcao_menu != 5:
+    print("\n=========================")
+    print("         SUDOKU         ")
+    print("=========================")
+    print("1 - Jogar 4x4 (Competitivo 2 Jogadores)")
+    print("2 - Modo Desafiante 9x9 (Solo vs Máquina)")
+    print("3 - Sobre o jogo e regras")
+    print("4 - Estatisticas da sessao")
+    print("5 - Fechar o programa")
+    
     valida_menu = False
     while valida_menu == False:
-        opcao_str = input("Escolha uma opcao (1 a 4): ")
-        for n in range(1, 5):
+        opcao_str = input("Escolha uma opcao (1 a 5): ")
+        for n in range(1, 6):
             if opcao_str == str(n):
                 valida_menu = True
                 opcao_menu = n
@@ -189,7 +190,118 @@ while opcao_menu != 4:
                                     pontuacao_total_sessao = pontuacao_total_sessao + pontos_partida
                                     partida_ativa = False
                                     opcao_dificuldade = 4
-    elif opcao_menu == 2:
+     elif opcao_menu == 2:
+        print("\nINICIANDO MODO DESAFIANTE 9x9...")
+        total_partidas = total_partidas + 1
+        tabuleiro_9x9 = [
+            [5,3,0,0,7,0,0,0,0], [6,0,0,1,9,5,0,0,0], [0,9,8,0,0,0,0,6,0],
+            [8,0,0,0,6,0,0,0,3], [4,0,0,8,0,3,0,0,1], [7,0,0,0,2,0,0,0,6],
+            [0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,5], [0,0,0,0,8,0,0,7,9]
+        ]
+        fixo_9x9 = []
+        for i in range(9):
+            linha_fixa = []
+            for j in range(9):
+                if tabuleiro_9x9[i][j] != 0: linha_fixa.append(True)
+                else: linha_fixa.append(False)
+            fixo_9x9.append(linha_fixa)
+
+        tempo_restante = 50
+        pontos_9x9 = 0
+        partida_ativa_9x9 = True
+        
+        while partida_ativa_9x9 == True:
+            print("\n=========================================")
+            print(" TEMPO RESTANTE (AÇÕES):", tempo_restante)
+            print("=========================================")
+            print("    1 2 3   4 5 6   7 8 9")
+            print("  +-------+-------+-------+")
+            for i in range(9):
+                linha_fmt = str(i + 1) + " | "
+                for j in range(9):
+                    if tabuleiro_9x9[i][j] != 0: linha_fmt += str(tabuleiro_9x9[i][j]) + " "
+                    else: linha_fmt += ". "
+                    if j == 2 or j == 5: linha_fmt += "| "
+                linha_fmt += "|"
+                print(linha_fmt)
+                if i == 2 or i == 5 or i == 8: print("  +-------+-------+-------+")
+            print("Pontuação:", pontos_9x9)
+            
+            if tempo_restante == 0:
+                print("\n=========================================")
+                print(" O TEMPO ESGOTOU! A MÁQUINA VENCEU!")
+                print("=========================================")
+                partida_ativa_9x9 = False
+            else:
+                print("\n1 - Jogar numero")
+                print("2 - Desistir")
+                ent_acao = input("Escolha uma opção: ")
+                if ent_acao == "2":
+                    print("Você desistiu e a MÁQUINA VENCEU.")
+                    partida_ativa_9x9 = False
+                elif ent_acao == "1":
+                    tempo_restante = tempo_restante - 1
+                    valida_l = False
+                    linha = -1
+                    while valida_l == False:
+                        ent_l = input("Digite a LINHA (1 a 9): ")
+                        for n in range(1, 10):
+                            if ent_l == str(n):
+                                valida_l = True
+                                linha = n - 1
+                        if valida_l == False: print("Invalido.")
+                    valida_c = False
+                    coluna = -1
+                    while valida_c == False:
+                        ent_c = input("Digite a COLUNA (1 a 9): ")
+                        for n in range(1, 10):
+                            if ent_c == str(n):
+                                valida_c = True
+                                coluna = n - 1
+                        if valida_c == False: print("Invalido.")
+                        
+                    if fixo_9x9[linha][coluna] == True:
+                        print("\n[ERRO] Casa fixa! Perdeu tempo.")
+                    else:
+                        valida_v = False
+                        valor = -1
+                        while valida_v == False:
+                            ent_v = input("Digite o valor (1 a 9): ")
+                            for n in range(1, 10):
+                                if ent_v == str(n):
+                                    valida_v = True
+                                    valor = n
+                            if valida_v == False: print("Invalido.")
+                                
+                        conflito = False
+                        for j in range(9):
+                            if j != coluna and tabuleiro_9x9[linha][j] == valor: conflito = True
+                        for i in range(9):
+                            if i != linha and tabuleiro_9x9[i][coluna] == valor: conflito = True
+                        inicio_i = (linha // 3) * 3
+                        inicio_j = (coluna // 3) * 3
+                        for i in range(inicio_i, inicio_i + 3):
+                            for j in range(inicio_j, inicio_j + 3):
+                                if (i != linha or j != coluna) and tabuleiro_9x9[i][j] == valor:
+                                    conflito = True
+                                    
+                        if conflito == True: print("\n[ERRO] Regra do Sudoku violada! Perdeu tempo.")
+                        else:
+                            tabuleiro_9x9[linha][coluna] = valor
+                            pontos_9x9 = pontos_9x9 + 20
+                            print("\n-> Sucesso! (+20 pontos)")
+                            vazias_9 = 0
+                            for i in range(9):
+                                for j in range(9):
+                                    if tabuleiro_9x9[i][j] == 0: vazias_9 += 1
+                            if vazias_9 == 0:
+                                print("\n=========================================")
+                                print(" PARABÉNS! VOCÊ VENCEU A MÁQUINA!")
+                                print("=========================================")
+                                vitorias = vitorias + 1
+                                pontuacao_total_sessao = pontuacao_total_sessao + pontos_9x9
+                                partida_ativa_9x9 = False
+    elif opcao_menu == 3:
         print("\nREGRAS DO SUDOKU 4x4")
         print("1. O jogo tem um jogador.")
         print("2. Cada casa aceita um numero de 1 a 4.")
@@ -203,7 +315,7 @@ while opcao_menu != 4:
             voltar = input("Digite 1 para voltar ao menu principal: ")
             if voltar != "1":
                 print("Opcao invalida. Digite 1 para voltar.")
-        elif opcao_menu == 3:
+        elif opcao_menu == 4:
         print("\n=====================================")
         print("       ESTATISTICAS DA SESSAO        ")
         print("=====================================")
