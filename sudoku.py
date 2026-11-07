@@ -225,3 +225,5 @@ while opcao_menu != 4:
             voltar = input("Digite 1 para voltar ao menu principal: ")
             if voltar != "1":
                 print("Opcao invalida. Digite 1 para voltar.")
+            elif opcao_menu == 4:
+                print("Programa encerrado.")
