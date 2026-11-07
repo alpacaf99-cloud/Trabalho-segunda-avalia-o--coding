@@ -203,3 +203,25 @@ while opcao_menu != 4:
             voltar = input("Digite 1 para voltar ao menu principal: ")
             if voltar != "1":
                 print("Opcao invalida. Digite 1 para voltar.")
+        elif opcao_menu == 3:
+        print("\n=====================================")
+        print("       ESTATISTICAS DA SESSAO        ")
+        print("=====================================")
+        print("Partidas iniciadas:", total_partidas)
+        print("Partidas concluídas (Vitórias):", vitorias)
+        print("Pontuação acumulada total:", pontuacao_total_sessao)
+
+        if total_partidas > 0:
+            taxa_vitoria = (vitorias / total_partidas) * 100.0
+            print("Taxa de conclusão:", float(int(taxa_vitoria * 100)) / 100, "%")
+            media_pontos = pontuacao_total_sessao / total_partidas
+            print("Média de pontos por partida:", float(int(media_pontos * 100)) / 100)
+        else:
+            print("Nenhuma partida jogada nesta sessão.")
+        print("-------------------------------------")
+
+        voltar = "0"
+        while voltar != "1":
+            voltar = input("Digite 1 para voltar ao menu principal: ")
+            if voltar != "1":
+                print("Opcao invalida. Digite 1 para voltar.")
