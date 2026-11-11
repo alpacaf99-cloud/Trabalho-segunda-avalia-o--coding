@@ -190,7 +190,7 @@ while opcao_menu != 5:
                                     pontuacao_total_sessao = pontuacao_total_sessao + pontos_partida
                                     partida_ativa = False
                                     opcao_dificuldade = 4
-     elif opcao_menu == 2:
+    elif opcao_menu == 2:
         print("\nINICIANDO MODO DESAFIANTE 9x9...")
         total_partidas = total_partidas + 1
         tabuleiro_9x9 = [
@@ -315,7 +315,7 @@ while opcao_menu != 5:
             voltar = input("Digite 1 para voltar ao menu principal: ")
             if voltar != "1":
                 print("Opcao invalida. Digite 1 para voltar.")
-        elif opcao_menu == 4:
+    elif opcao_menu == 4:
         print("\n=====================================")
         print("       ESTATISTICAS DA SESSAO        ")
         print("=====================================")
